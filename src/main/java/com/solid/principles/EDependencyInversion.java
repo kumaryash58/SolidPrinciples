@@ -2,6 +2,22 @@ package com.solid.principles;
 
 public class EDependencyInversion {
 
+    public static void main(String[] args) {
+        // Violating DIP
+        System.out.println("Violating DIP:");
+        UserService userService = new UserService();
+        userService.performAction();
+
+        // Following DIP
+        System.out.println("\nFollowing DIP:");
+        DatabaseDIP mysqlDb = new MySQLDatabaseDIP();
+        UserServiceDIP serviceMySQL = new UserServiceDIP(mysqlDb);
+        serviceMySQL.performAction();
+
+        DatabaseDIP postgresDb = new PostgreSQLDatabaseDIP();
+        UserServiceDIP servicePostgres = new UserServiceDIP(postgresDb);
+        servicePostgres.performAction();
+    }
 }
 
 //=============Violating DIP

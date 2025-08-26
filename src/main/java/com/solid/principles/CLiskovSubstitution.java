@@ -2,6 +2,30 @@ package com.solid.principles;
 
 public class CLiskovSubstitution {
 
+    public static void main(String[] args) {
+        // Without LSP
+        System.out.println("Without LSP:");
+        Bird parrot = new Parrot();
+        parrot.fly();
+        Bird ostrich = new Ostrich();
+        try {
+            ostrich.fly();
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+
+        // With LSP
+        System.out.println("\nWith LSP:");
+        BirdLSP parrotLSP = new ParrotLSP();
+        parrotLSP.eat();
+        if (parrotLSP instanceof FlyingBirdLSP) {
+            ((FlyingBirdLSP) parrotLSP).fly();
+        }
+
+        BirdLSP ostrichLSP = new OstrichLSP();
+        ostrichLSP.eat();
+        // No fly() method for OstrichLSP, so no risk of exception
+    }
 }
 
 //============Without LSP- Violating LSP

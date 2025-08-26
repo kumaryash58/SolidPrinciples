@@ -6,6 +6,30 @@ public class DInterfaceSegregation {
 //	replaceable with objects of a subclass without affecting the correctness of the program. 
 //	Essentially, subclasses should be able to stand in for their parent classes.
 
+    public static void main(String[] args) {
+        // Violating ISP
+        System.out.println("Violating ISP:");
+        Machine oldPrinter = new OldPrinter();
+        oldPrinter.print();
+        try {
+            oldPrinter.scan();
+        } catch (UnsupportedOperationException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+
+        // Following ISP
+        System.out.println("\nFollowing ISP:");
+        Printer simplePrinter = new SimplePrinter();
+        simplePrinter.print();
+
+        Scanner simpleScanner = new SimpleScanner();
+        simpleScanner.scan();
+
+        MultiFunctionMachine mfd = new MultiFunctionMachine();
+        mfd.print();
+        mfd.scan();
+    }
+
 }
 
 //Violating ISP

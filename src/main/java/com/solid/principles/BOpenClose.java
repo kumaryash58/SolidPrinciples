@@ -7,6 +7,23 @@ public class BOpenClose {
 //	but closed for modification. This means you should be able to add new functionality 
 //	without changing existing code.
 
+	public static void main(String[] args) {
+		// Without OCP
+		Circle circle = new Circle(5);
+		Square square = new Square(4);
+		AreaCalculator areaCalculator = new AreaCalculator();
+		System.out.println("Without OCP:");
+		System.out.println("Circle area: " + areaCalculator.calculateArea(circle));
+		System.out.println("Square area: " + areaCalculator.calculateArea(square));
+
+		// With OCP
+		ShapeOCP circleOCP = new CircleOCP(5);
+		ShapeOCP squareOCP = new SquareOCP(4);
+		AreaCalculatorOCP areaCalculatorOCP = new AreaCalculatorOCP();
+		System.out.println("\nWith OCP:");
+		System.out.println("CircleOCP area: " + areaCalculatorOCP.calculateArea(circleOCP));
+		System.out.println("SquareOCP area: " + areaCalculatorOCP.calculateArea(squareOCP));
+	}
 }
 
 //======================Without OCP (Violates Open/Closed Principle)==================
